@@ -1,0 +1,5 @@
+<form action=" {% url 'contact_us:contact_us_form' %} " method="post" >
+    {% csrf_token %}
+    {{contact_us_form.as_p}}
+    <button type="submit " class="btn bg-primary text-light btn-block">ارسال پیام</button>
+</form>

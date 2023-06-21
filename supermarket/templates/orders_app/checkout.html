@@ -1,0 +1,58 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+
+{% block title %}سبد خرید{% endblock title %}
+{% block body %}
+
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">اطلاعات خریدار</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>مرحله اول</h1></div>
+        </div>
+    </div>
+    <div class="checkout block">
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                {% comment %} <div class="col-12 mb-3">
+                    <div class="alert alert-lg alert-primary">حساب کاربری دارید؟ <a href="login.html">وارد حساب خود شوید</a></div>
+                </div> {% endcomment %}
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="card mb-lg-0">
+                        <div class="card-body">
+                            <h3 class="card-title"> اطلاعات خریدار</h3>
+                            <form action="" method='post'>
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <button type="submit" class="btn btn-primary btn-xl btn-block">ثبت سفارش</button>
+                            </form>
+                        </div>
+                        <div class="card-divider"></div>
+                        {% comment %} <div class="card-body">
+                            <h3 class="card-title">جزئیات حمل و نقل</h3>
+                            <div class="form-group">
+                                <label for="checkout-comment">توضیحات سفارش <span class="text-muted">(اختیاری)</span></label>
+                                <textarea id="checkout-comment" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                </div>  
+
+                {% comment %}  {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

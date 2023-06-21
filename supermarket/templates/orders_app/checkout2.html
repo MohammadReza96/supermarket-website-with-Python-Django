@@ -1,0 +1,89 @@
+
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+{% block title %}سبد خرید{% endblock title %}
+
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">پرداخت</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>پرداخت</h1></div>
+        </div>
+    </div>
+    <div class="checkout block">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="card mb-lg-0">
+                        <div class="card-body">
+                            <h3 class="card-title">جزئیات پرداخت</h3>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <button type="submit" class="btn bg-primary text-light btn-xl btn-block">ثبت سفارش</button>
+                            </form>
+                        </div>
+                        <div class="card-divider"></div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
+                    <div class="card mb-0">
+                        <div class="card-body">
+                            <h3 class="card-title">سفارش شما</h3>
+                            <table class="checkout__totals">
+                                <thead class="checkout__totals-header">
+                                    <tr>
+                                        <th>محصول</th>
+                                        <th>جمع کل</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="checkout__totals-products">
+                                    {% for item in shop_card %}
+                                        <tr>
+                                            <td>{{item.product.product_name}}<span class="d-inline-block">× {{item.number}}</span></td>
+                                            <td>{{item.total_price|intcomma}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tbody class="checkout__totals-subtotals">
+                                    <tr>
+                                        <th>جمع جزء</th>
+                                        <td>{{total_price|intcomma}} تومان</td>
+                                    </tr>
+                                    <tr>
+                                        <th>حمل و نقل</th>
+                                        <td>{{delivery_price|intcomma}} تومان</td>
+                                    </tr>
+                                    <tr>
+                                        <th>مالیات</th>
+                                        <td>{{tax_price|intcomma}} تومان</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="checkout__totals-footer">
+                                    <tr>
+                                        <th>جمع کل</th>
+                                        <td>{{final_price|intcomma}}تومان</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,11 @@
+<form action=" {% url 'blogs:blog_comment' slug=slug %}"  method='post'>
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="review-text">دیدگاه شما</label>
+        {{blog_form.as_p}}
+    </div>
+    <div class="form-group mb-0">
+        <button type="submit" class="btn  bg-primary text-light btn-lg">ارسال نظر</button>
+    </div>
+    
+</form>

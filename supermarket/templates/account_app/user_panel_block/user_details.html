@@ -1,0 +1,52 @@
+{% extends 'account_app/user_panel.html' %}
+{% load render_partial %}
+
+{% block dashbord %}
+    <div class="dashboard">
+        <div class="dashboard__profile card profile-card">
+            <div class="card-body profile-card__body">
+                <div class="profile-card__avatar">
+                    {% if user.image %}
+                        <img class="rounded rounded-pill border border-dark" src="{{media_url}}{{user.image}}" alt="{{user.name}}-{{user.family}}" style="width:100px;height:100px">
+                    {% else %}
+                        <img class="rounded rounded-pill border border-dark" src="{{media_url}}/images/user/no-photo.jpeg" alt="" style="width:100px;height:100px">
+                        <br>
+                    {% endif %}
+                    {% comment %} <img src="{{media_url}}{{user.image}}" alt=""> {% endcomment %}
+                </div>
+                <br>
+                <div class="profile-card__name">{{user.name}} {{user.family}}</div>
+                <div class="profile-card__email">{{user.email}}</div>
+                <div class="profile-card__edit"><a href=" {% url 'accounts:userdetail_modify_informations' %} " class="btn btn-secondary btn-sm">ویرایش پروفایل</a></div>
+            </div>
+        </div>
+
+
+        <div class="dashboard__address card address-card address-card--featured">
+            <div class="address-card__badge bg-primary">مشخصات کاربر</div>
+            <div class="address-card__body">
+                <div class="address-card__name">{{user.name}} {{user.family}}</div>
+                <div class="address-card__row">
+                    <div class="address-card__row-title">آدرس</div>
+                    <div class="address-card__row-content"><span class="ltr_text">{{user.city}} - {{user.address}}</span></div>
+                </div>
+                <div class="address-card__row">
+                    <div class="address-card__row-title">شماره تلفن</div>
+                    <div class="address-card__row-content"><span class="ltr_text">{{user.mobile_number}}</span></div>
+                </div>
+                <div class="address-card__row">
+                    <div class="address-card__row-title">کد پستی</div>
+                    <div class="address-card__row-content"><span class="ltr_text">{{user.postal_code}}</span></div>
+                </div>
+                <div class="address-card__row">
+                    <div class="address-card__row-title">آدرس ایمیل</div>
+                    <div class="address-card__row-content">{{user.email}}</div>
+                </div>
+                
+            </div>
+        </div>
+
+        
+        {% comment %} {% render_partial 'order:user_orders' %} {% endcomment %}
+    </div>
+{% endblock dashbord %}

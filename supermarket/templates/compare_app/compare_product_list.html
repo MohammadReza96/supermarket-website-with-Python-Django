@@ -1,0 +1,8 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% block title %}product compare list{% endblock title %}
+{% block body %}
+    <div class="compare_list" id="compare_list">
+        {% render_partial "compare:compare_product" %}
+    </div>
+{% endblock body %}

@@ -1,0 +1,24 @@
+<div class="block block-products-carousel" data-layout="grid-5">
+    <div class="container">
+        <div class="block block-features block-features--layout--boxed">
+            <div class="block-header">
+                <h3 class="block-header__title">لیست برند ها</h3>
+                <div class="block-header__divider"></div>
+                <div class="block-header__arrows-list">
+                </div>
+            </div>
+        <div class="container text-center">
+            <div class="d-flex flex-wrap justify-content-center">
+                {% for brand in brands %}
+                    <div class="col-md-3 col-sm-8 text-center m-3 border border-pill ">
+                        <img src="{{media_url}}{{brand.brand_image}}" alt="" style="width:100%;">
+                    </div>
+                    <div class="block-features__divider"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+            </div>
+        </div>
+    </div>
+</div>

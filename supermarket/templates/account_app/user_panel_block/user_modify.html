@@ -1,0 +1,37 @@
+{% extends 'account_app/user_panel.html' %}
+{% load render_partial %}
+
+{% block dashbord %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>ویرایش پروفایل</h5></div>
+                        <div class="card-divider"></div>
+                        <div class="card-body">
+                            <form action="" method='post' enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{user_detail_form.as_p}}
+                                <label for="">عکس پیشفرض :</label>
+                                {% if user_current_image %}
+                                    <img class="rounded rounded-pill border border-dark" src="{{ media_url }}{{user_current_image}}" alt="" style="width:100px;height:100px;">
+                                {% else %}
+                                    <img  class="rounded rounded-pill border border-dark" src="{{media_url}}/images/user/no-photo.jpeg" alt="" style="width:100px;height:100px">
+                                {% endif %}
+                                <br>
+                                <br>
+                                <br>
+                                <div class="alert alert-warning fade show alert-dismissible" role="alert">
+                                    پر کردن فیلد های ستاره دار (*) اجباری است                                   
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <button class='btn btn-danger btn-block' type='submit'>آبدیت اطلاعات کاربر</button>
+                            </form>
+                        </div>
+                    </div>
+{% endblock dashbord %}
+
+
+
+
+

@@ -1,0 +1,36 @@
+{% load humanize %}
+
+<div class="widget-filters__item">
+    <div class="filter filter--opened" data-collapse-item>
+        <button type="button" class="filter__title" data-collapse-trigger>قیمت
+            <svg class="filter__arrow" width="12px" height="7px">
+                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+            </svg>
+        </button>
+        <div class="filter__body" data-collapse-content>
+            <div class="filter__container">
+                <div class="filter-price" data-min="5000" data-max="150000" data-from="25000" data-to="110000">
+                    <div class="filter-price__slider"></div>
+                    <div class="filter-price__title">
+                        {% if cur_prices %}
+                            <span class="filter-price__min-value" id='cur_price'>{{cur_prices |intcomma }}</span> تومان 
+                        {% else %}
+                            <span class="filter-price__min-value" id='cur_price'>{{res_aggre.max_price |intcomma }}</span> تومان 
+                        {% endif %}
+                        <br>
+                        {% if cur_prices %}
+                            <input type="range" name='price' min={{res_aggre.min_price}} max={{res_aggre.max_price}} value={{cur_prices}} oninput="showVal(this.value)"  style='width:200px;'><br>
+                        {% else %}
+                            <input type="range" name='price' min={{res_aggre.min_price}} max={{res_aggre.max_price}} value={{res_aggre.max_price}} oninput="showVal(this.value)"  style='width:200px;'><br>
+                        {% endif %}
+                        <span>{{res_aggre.min_price |intcomma }}</span> تومان
+                        &nbsp;&nbsp;
+                        <span>{{res_aggre.max_price |intcomma }}   تومان</span>
+
+                        <span class="filter-price__max-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

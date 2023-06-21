@@ -1,0 +1,53 @@
+
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+{% block title %}سبد خرید{% endblock title %}
+
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">زمان ارسال</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>زمان ارسال</h1></div>
+        </div>
+    </div>
+    <div class="checkout block">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="card mb-lg-0">
+                        <div class="card-body">
+                            <h3 class="card-title"> انتخاب زمان ارسال </h3>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{delivery_form.as_p}}
+                                {% if order.is_finally == False %}
+                                    {% if order.payment_type.id == 1 %}
+                                        <button type="submit" class="btn bg-primary text-light btn-xl btn-block">اتصال به درگاه</button>
+                                    {% elif order.payment_type.id == 2 %}
+                                        <button type="submit" class="btn bg-primary text-light btn-xl btn-block">نهایی کردن سفارش</button>
+                                    {% endif %}
+                                {% endif %}
+                            </form>
+                        </div>
+                        <div class="card-divider"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

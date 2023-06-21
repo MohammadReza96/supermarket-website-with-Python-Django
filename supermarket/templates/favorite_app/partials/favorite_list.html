@@ -1,0 +1,98 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+{% block title %}favorite product list{% endblock title %}
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">علاقه‌مندی‌ها</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>علاقه‌مندی‌ها</h1></div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="container">
+            <table class="wishlist">
+                <thead class="wishlist__head">
+                    <tr class="wishlist__row">
+                        <th class="wishlist__column wishlist__column--image text-center">تصویر</th>
+                        <th class="wishlist__column wishlist__column--product text-center">محصول</th>
+                        <th class="wishlist__column wishlist__column--stock text-center">وضعیت انبار</th>
+                        <th class="wishlist__column wishlist__column--price text-center">قیمت</th>
+                        <th class="wishlist__column wishlist__column--tocart text-center"></th>
+                        <th class="wishlist__column wishlist__column--remove text-center"></th>
+                    </tr>
+                </thead>
+                <tbody class="wishlist__body">
+                    {% if favorite_product_list %}
+                        {% for product in favorite_product_list %}
+                            <tr class="wishlist__row">
+                                <td class="wishlist__column wishlist__column--image">
+                                    <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.product_image}}" alt=""></a>
+                                </td>
+                                <td class="wishlist__column wishlist__column--product text-center">
+                                    <a href="{{product.get_absolute_url}}" class="wishlist__product-name">{{product.product_name}}</a>
+                                </td>
+                                <td class="wishlist__column wishlist__column--stock text-center">
+                                {% if product.get_warehouse_status > 0  %}
+                                    <div class="badge badge-success">موجود در انبار</div>
+                                {% else %}
+                                    <div class="badge badge-danger">ناموجود</div>
+                                {% endif %}
+                                </td>
+                                <td class="wishlist__column wishlist__column--price text-center">
+                                {% if product.get_warehouse_status > 0  %}
+                                    {% if product.get_warehouse_status > 0  and product.get_warehouse_status <= 3 %}
+                                        <span class="warehouse_status">تنها {{product.get_warehouse_status}} مورد در انبار موجود است </span>
+                                        <br>
+                                    {% endif %}
+                                    {% if product.product_price > product.get_finall_price_with_discount %}
+                                        <del style="color:#BBBBBB;" >{{product.product_price|intcomma}} تومان </del><br>
+                                        {{product.get_finall_price_with_discount|intcomma}} تومان
+                                    {% else %}
+                                        {{product.product_price|intcomma}} تومان
+                                    {% endif %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                                </td>
+                                <td class="wishlist__column wishlist__column--tocart text-center">
+                                {% if product.get_warehouse_status > 0  %}
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="delete_from_favorite_list({{product.id}})">حذف از لیست</button>
+                                    <button type="button" class="btn bg-primary text-light btn-sm" onclick="add_to_shopcard({{product.id}},1)">افزودن به سبد</button>
+                                {% else %}
+                                    <button type="button" class="btn btn-danger btn-block btn-sm" onclick="delete_from_favorite_list({{product.id}})">حذف از لیست</button>
+                                {% endif %}
+                                </td>
+                                <td class="wishlist__column wishlist__column--remove">
+                                    <button type="button" class="btn btn-light btn-sm btn-svg-icon">
+                                        <svg width="12px" height="12px">
+                                            <use xlink:href="images/sprite.svg#cross-12"></use>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr class="wishlist__row">
+                            <td class="wishlist__column wishlist__column--tocart text-center text-danger" colspan="6">لیست علاقه مندی شما خالی است</td>
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock  %}

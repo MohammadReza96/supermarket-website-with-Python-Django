@@ -1,0 +1,53 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+{% block title %}ارتباط با ما{% endblock title %}
+{% load render_partial %}
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">تماس با ما</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>تماس با ما</h1></div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="container">
+            <div class="card mb-0 contact-us">
+                <div class="card-body">
+                    <div class="contact-us__container">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 pb-4 pb-lg-0">
+                                <h4 class="contact-us__header card-title">آدرس من</h4>
+                                <div class="contact-us__address">
+                                    <p><strong>آدرس : </strong>
+                                            تهران جنت آباد شمالی 
+                                        <br><strong>ایمیل :</strong> mohammad.r.yazdaniyan@gmail.com
+                                        <br><strong>شماره تلفن :</strong> 09305622564</p>
+                                    {% comment %} <p><strong>ساعات کاری</strong> {% endcomment %}
+                                    <p class="text-justify"><strong>دیدگاه</strong>
+                                        <br>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان >لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلیکه لازم است و برای شرایط فعلی</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <h4 class="contact-us__header card-title">یک پیام برای ما بگذارید</h4>
+                                {% render_partial 'contact_us:contact_us_form' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

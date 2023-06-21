@@ -1,0 +1,58 @@
+<header class="site__header d-lg-block d-none">
+    <div class="site-header">
+        <!-- .topbar -->
+        <div class="site-header__topbar topbar">
+            <div class="topbar__container container">
+                <div class="topbar__row">
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href=" {% url 'about_us:about_us' %} ">درباره ما</a></div>
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href=" {% url 'contact_us:contact_us' %} ">تماس با ما</a></div>
+                    <div class="topbar__spring"></div>
+                    <div class="topbar__item">
+                        <div class="topbar-dropdown">
+
+
+                            {% if user.is_authenticated %}
+                            <button class="topbar-dropdown__btn panel_user" type="button">
+                                <a href=" {% url 'accounts:userpanel' %} " class="topbar-link text-dark">پنل کاربری</a>
+                                <i class="fa fa-user"></i>
+                            </button>
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="site-header__middle container">
+            <div class="site-header__logo">
+                <a href="{% url 'index:home' %}">
+                    <img src="{{media_url}}/images/logos/supermarket-logo.png" alt="">
+                </a>
+            </div>
+            <div class="site-header__search">
+                <div class="search">
+                    <form class="search__form" action=" {% url 'search:search_value' %} " >
+                        <input class="search__input" name="search" placeholder="جستجو از میان 10,000 محصول"
+                            aria-label="Site search" type="text" autocomplete="off">
+                        <button class="search__button" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <div class="search__border"></div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+            <div class="site-header__phone">
+                <div class="site-header__phone-title">پشتیبانی</div>
+                <div class="site-header__phone-number"><span class="ltr_text">021-454567</span></div>
+            </div>
+        </div>
+        <!-- .topbar / end -->
+        {% include 'partials/navbar.html' %}
+    </div>
+</header>

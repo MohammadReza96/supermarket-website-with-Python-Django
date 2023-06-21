@@ -1,0 +1,150 @@
+<div class="site-header__nav-panel">
+    <div class="nav-panel bg-primary">
+        <div class="nav-panel__container container">
+            <div class="nav-panel__row">
+                <div class="nav-panel__logo">
+                    <a href="{% url 'index:home' %}">
+                        <img src="{{media_url}}/images/shopLogo2.png" alt="">
+                    </a>
+                </div>
+                <!-- .nav-links -->
+                <div class="nav-panel__nav-links nav-links">
+                    <ul class="nav-links__list">
+                        <li class="nav-links__item nav-links__item--with-submenu">
+                            <a href=" {% url 'index:home' %}">
+                                <span><i class="fa fa-home"></i>&nbsp; خانه</span>
+                            </a>
+                        </li>
+
+                        {% comment %}----------------------  products group ----------------------- {% endcomment %}
+
+                        <li class="nav-links__item nav-links__item--with-submenu">
+                            <a href="#">
+                                <span>
+                                    دسته بندی کالاها
+                                    &nbsp;
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="nav-links__megamenu nav-links__megamenu--size--nl col-auto">
+                                <!-- .megamenu -->
+                                <div class="megamenu col-8">
+                                    <div class="row  justify-content-around">
+                                        {% for product_type_parrent in product_group_parrent %}
+                                            <div class="col-3 text-center">
+                                                <ul class="megamenu__links megamenu__links--level--0 col-10">
+                                                    <li class="megamenu__item megamenu__item--with-submenu">
+                                                        {% comment %} {% if product_type.group_parent  %}
+                                                        {% endif %} {% endcomment %}
+                                                        <a href="#" class="text-center">{{product_type_parrent.group_name}}</a>
+                                                        <ul class="megamenu__links megamenu__links--level--1">
+                                                            {% for product_type in product_group_items %}
+                                                                {% if product_type.group_parent.group_name == product_type_parrent.group_name %}
+                                                                    <li class="megamenu__item">
+                                                                        <a href=" {% url 'products:products_by_group' slug=product_type.group_slug  %} " class="text-primary">{{product_type.group_name}}</a>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- .megamenu / end -->
+                            </div>
+                        </li>
+                    {% comment %}----------------------  login / logout / signup ----------------------- {% endcomment %}
+
+                        <li class="nav-links__item nav-links__item--with-submenu">
+                            <a href="#">
+                                <span>
+                                    حساب کاربری&nbsp;<i class="fa fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="nav-links__menu">
+                                <!-- .menu -->
+
+
+                                {% if user.is_authenticated %}
+                                <ul class="menu menu--layout--classic">
+                                    <li class="text-primary"><a>کاربر {{user.name}} خوش آمدید</a></li>
+                                    <li><a href=" {% url 'accounts:logout' %} ">خروج از حساب کاربری</a></li>
+                                </ul>
+                                {% else %}
+                                <ul class="menu menu--layout--classic">
+                                    <li><a href=" {% url 'accounts:login' %} ">ورود</a></li>
+                                    <li><a href=" {% url 'accounts:register' %} ">ثبت نام</a></li>
+                                </ul>
+                                {% endif %}
+
+                                <!-- .menu / end -->
+                            </div>
+                        </li>
+                        <li class="nav-links__item nav-links__item--with-submenu">
+                            <a href=" {% url 'blogs:blogs' %} ">
+                                <span><i class="fa fa-newspaper"></i>&nbsp; بلاگ</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- .nav-links / end -->
+                {% comment %}----------------------  search box ----------------------- {% endcomment %}
+                <div class="nav-panel__indicators">
+                    <div class="indicator indicator--trigger--click">
+                        <button type="button" class="indicator__button">
+                            <span class="indicator__area">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </button>
+                        <div class="indicator__dropdown">
+                            <div class="drop-search">
+                                <form action="{% url 'search:search_value' %}" class="drop-search__form">
+                                    <input class="drop-search__input" name="search"
+                                        placeholder="جستجو از میان 10,000 محصول"
+                                        aria-label="Site search" type="text" autocomplete="off">
+                                    <button class="drop-search__button drop-search__button--submit"
+                                        type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %}----------------------  favorite list ----------------------- {% endcomment %}
+                    {% if user.is_authenticated %}
+                        <div class="indicator">
+                            <a href=" {% url 'favorite:favorite_product' %} " class="indicator__button">
+                                <span class="indicator__area">
+                                    <i class="fa fa-heart"></i>
+                                    <span class="indicator__value" id="indicator__value" >0</span>
+                                </span>
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% comment %}----------------------  compare list ----------------------- {% endcomment %}
+                    <div class="indicator">
+                        <a href=" {% url 'compare:compare_products_list' %} " class="indicator__button">
+                            <span class="indicator__area">
+                                <i class="fa fa-list-ul"></i>
+                                <span class="indicator__value" id="indicator__value_2">0</span>
+                            </span>
+                        </a>
+                    </div>
+                    {% comment %}----------------------  shopcard list ----------------------- {% endcomment %}
+                    <div class="indicator">
+                        <a href=" {% url 'orders:shop_cards' %} " class="indicator__button">
+                            <span class="indicator__area">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="indicator__value" id='indicator__value_3' >0</span>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

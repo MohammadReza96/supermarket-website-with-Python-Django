@@ -1,0 +1,7 @@
+from django.apps import AppConfig
+
+
+class ContactUsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'apps.contact_us'
+    verbose_name='بخش ارتباط با ما'

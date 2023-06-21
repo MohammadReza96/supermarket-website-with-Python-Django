@@ -1,0 +1,46 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+
+{% block title %}discount{% endblock title %}
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">پرداخت</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>وضعیت پرداخت شما</h1></div>
+        </div>
+    </div>
+    <div class="checkout block">
+        <div class="d-flex justify-content-center">
+            <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <h3 class="card-title">پرداخت شما</h3>
+                        <table class="checkout__totals">
+                            <thead class="checkout__totals-header">
+                                <tr>
+                                    <th>وضعیت پرداخت :</th>
+                                    <td>{{message}}</td>
+                                </tr>
+                            </thead>
+                        </table>                                    
+                        <a href=" {% url 'index:home' %}" class='btn bg-primary text-light'>بازگشت به صفحه اصلی</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

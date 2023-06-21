@@ -1,0 +1,132 @@
+{% extends 'account_app/user_panel.html' %}
+{% load render_partial %}
+{% load humanize %}
+{% block dashbord %}
+<div class="card">
+    <div class="card-header">
+        <h5>سابقه خرید</h5></div>
+    <div class="card-divider"></div>
+    <div class="card-table">
+        <div class="table-responsive-sm">
+            <table>
+                <thead>
+                    <tr>
+                        <th class='text-center'>کد سفارش</th>
+                        <th class='text-center'>تاریخ سفارش</th>
+                        <th class='text-center'>وضعیت سفارش</th>
+                        <th class='text-center'>کد پیگیری</th>
+                        <th class='text-center'>جمع کل</th>
+                    </tr>
+                </thead>
+                {% if page_obj %}
+                    <tbody>
+                        {% for order in page_obj %}
+                            <tr>
+                                <td class='text-center'><a href="">{{order.order.id}}</a></td>
+                                <td class='text-center'>{{order.Payment_register_date_jalai_type }}</td>
+                                <td class='text-center'>
+                                    {% if order.is_finaly %}
+                                        {% if order.order.is_delivered %}
+                                            <span style="color:blue;">ارسال شده</span>
+                                        {% else %}
+                                            <span style="color:green;">تکمیل شده در حال ارسال ...</span>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if order.order.payment_type.id == 2 %}
+                                            <span style="color:orange;">پرداخت در محل انجام خواهد شد</span>
+                                        {% else %}
+                                            <span style="color:red;">تکمیل نشده</span>
+                                        {% endif %}
+                                    {% endif %}
+                                </td class='text-center'>
+                                <td class='text-center'>
+                                    {% if order.is_finaly %}
+                                        {{order.ref_id}}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td class='text-center'>{{order.amount |intcomma}} ریال</td>
+                            </tr>
+                            <tr class='text-center bg-secondary text-light'>
+                                <th></th>
+                                <th>محصول</th>
+                                <th>تعداد</th>
+                                <th>زمان ارسال</th>
+                                <th>قیمت محصول</th>
+                            </tr>
+                            {% for items in order.order.order_details.all %}
+                                <tr class='text-center  bg-secondary text-light'>
+                                    <td></td>
+                                    <td><a href=" {% url 'products:product_detail' slug=items.product.product_slug %} " class='text-light'>{{items.product}}</a></td>
+                                    <td>{{items.number}}</td>
+                                    <td>{{items.order.delivery_day}}</td>
+                                    <td>{{items.price}} تومان</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                {% else %}
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class='text-center text-danger'>سبد خرید شما خالی است</td>
+                        </tr>
+                    </tbody>
+                {% endif %}
+
+            </table>
+        </div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="posts-view__pagination">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+    
+            <!--Previous-->
+            {% if page_obj.has_previous %}
+                <li class="page-item "><a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                    {% endif %}
+            <!-- Previous-->
+    
+            <!--Hellip-->
+            {% if page_obj.number|add:'-4' > 1 %}
+                <li class="page-item"><a class="page-link bg-primary text-light " href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+            {% endif %}
+    
+        <!--Pager-->
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="page-item active text-dark" aria-current="page">
+                    <span class="page-link bg-primary text-light">
+                        {{ i }}
+                        <span class="sr-only">(current)</span>
+                    </span>
+                </li>
+            {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                <li class="page-item"><a class="page-link  " href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <!--end Pager__>
+    
+        <!Hellip-->
+        {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+            <li class="page-item"><a class="page-link " href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+        <!end Hellip -->
+    
+        <!--Next-->
+        {% if page_obj.has_next %}
+            <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+            </li>
+        {% else %}
+            <li class="page-item-disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="True"></a></li>
+        {% endif %}
+        <!--end Next-->
+        </ul>
+    </nav>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock dashbord %}

@@ -1,0 +1,23 @@
+<div class="block-header">
+    <h3 class="block-header__title">{{title}}</h3>
+    <div class="block-header__divider"></div>
+    <ul class="block-header__groups-list">
+        <li>
+            <button type="button"   id="bn_0"
+                class="block-header__group block-header__group--active" onclick="change_group_{{fun_val}}(0)">همه</button>
+        </li>
+        {% for group in product_group %}
+            <li>
+                <button type="button" id="bn_{{group.id}}" class="block-header__group" onclick="change_group_{{fun_val}}({{group.id}})">{{group.group_name}}</button>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="block-header__arrows-list">
+        <button class="block-header__arrow block-header__arrow--left" type="button">
+            <i class="fas fa-angle-right"></i>
+        </button>
+        <button class="block-header__arrow block-header__arrow--right" type="button">
+            <i class="fas fa-angle-left"></i>
+        </button>
+    </div>
+</div>

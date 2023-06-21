@@ -1,0 +1,88 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+
+{% block title %}discount{% endblock title %}
+
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">کد تخفیف</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>ثبت کد تخفیف</h1></div>
+        </div>
+    </div>
+    <div class="checkout block">
+        <div class="d-flex justify-content-center">
+            <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <h3 class="card-title">سفارش شما</h3>
+                        <table class="checkout__totals">
+                            <thead class="checkout__totals-header">
+                                <tr>
+                                    <th>محصول</th>
+                                    <th>جمع کل</th>
+                                </tr>
+                            </thead>
+                            <tbody class="checkout__totals-products">
+            
+            
+                                {% for item in shop_card %}
+                                <tr>
+                                    <td> {{item.product}}  <span class="d-inline-block" style="color:red;">× {{item.number}}</span></td>
+                                    <td style="color:red;">{{item.total_price |intcomma }} تومان</td>
+                                </tr>
+                                {% endfor %}
+            
+            
+                            </tbody>
+                            <tbody class="checkout__totals-subtotals">
+                                <tr>
+                                    <th>جمع جزء</th>
+                                    <td>{{total_price|intcomma}} تومان</td>
+                                </tr>
+                                <tr>
+                                    <th>حمل و نقل</th>
+                                    <td>{{delivery_price|intcomma}} تومان</td>
+                                </tr>
+                                <tr>
+                                    <th>مالیات</th>
+                                    <td>{{tax_price|intcomma}} تومان</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="checkout__totals-footer">
+                                <tr>
+                                    <th>جمع کل</th>
+                                    <td>{{final_price|intcomma}} تومان</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <form 
+                        method="post"
+                        style="display:flex;justify-content: center;">
+                            {% csrf_token %}
+                            {{form2.as_p}}
+                            <button type="submit" class="btn bg-primary text-light">اعمال کد تخفیف</button>
+                        </form>
+                                    
+                        <a href=" {% url 'orders:delivery_time' order_id=order_id %}" class='btn bg-primary text-light'>تعیین زمان ارسال</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,73 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% block title %}search{% endblock title %}
+{% block body %}
+
+    {% if product or blog_list %}
+        {% if product %}
+            <br>
+            <div class="block block-products-carousel" data-layout="grid-5">
+                <div class="container">
+                    {% include 'product_app/partials/product_group.html' with title='محصولات یافت شده' %}
+                    {% include 'product_app/partials/product_box.html' with type=2 %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if blog_list %}
+            <div class="block block-products-carousel" data-layout="grid-5">
+                <div class="container">
+                {% include 'product_app/partials/product_group.html' with title='مقالات یافت شده' %}
+                <div class="posts-view__list posts-list posts-list--layout--list">
+                    <div class="posts-list__body d-flex flex-wrap justify-content-center ">
+                        {% for blog in blog_list %}
+                            <div class="posts-list__item col-md-12 col-sm-12">
+                                <div class="post-card post-card--layout--list post-card--size--nl">
+                                    <div class="post-card__image">
+                                        <a href=" {% url 'blogs:blog' slug=blog.blog_slug %} ">
+                                            <img src="{{media_url}}{{blog.blog_main_image}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-card__info">
+                                        <div class="post-card__date col-12">{{blog.blog_publish_date | date:'Y/m/d >> H:i:s'}}
+                                        </div>
+                                        <div class="post-card__date col-12">تعداد بازدید :&nbsp; <span style="color:red;">{{blog.blog_view_number}}</span>
+                                        </div>
+                                        <div class="post-card__name col-12 text-justify">
+                                            <h2>
+                                                <a href="{% url 'blogs:blog' slug=blog.blog_slug %} ">
+                                                    {{blog.blog_title}}
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div class="post-card__content text-justify">
+                                            {{blog.blog_short_text}}
+                                        </div>
+                                        <div class="post-card__read-more">
+                                            <a href=" {% url 'blogs:blog' slug=blog.blog_slug %} " class="btn btn-secondary btn-sm">بیشتر بخوانید</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <br>
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="col-7">
+                {% include 'product_app/partials/product_group.html' with title=' نتیجه جست و جو' %}
+            </div>
+            <div class="col-12">
+                <h1 class='text-center text-warning'>محصول یا مقاله ای یافت نشد</h1>
+            </div>
+        </div>
+        <br>
+    {% endif %}
+
+{% endblock body %}

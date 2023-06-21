@@ -1,0 +1,208 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+
+                        <li class="breadcrumb-item active" aria-current="page">مقالات</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>لیست مقالات</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="block">
+                    <div class="posts-view">
+                        <div class="posts-view__list posts-list posts-list--layout--list">
+
+
+                            <div class="posts-list__body">
+                                 {% for blog in page_obj %}
+                                    <div class="posts-list__item">
+                                        <div class="post-card post-card--layout--list post-card--size--nl">
+                                            <div class="post-card__image">
+                                                <a href=" {% url 'blogs:blog' slug=blog.blog_slug %} ">
+                                                    <img src="{{media_url}}{{blog.blog_main_image}}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="post-card__info">
+                                                <div class="post-card__date col-12">{{blog.blog_publish_date_jalai_type}}
+                                                </div>
+                                                <div class="post-card__date col-12">تعداد بازدید :&nbsp; <span style="color:red;">{{blog.blog_view_number}}</span>
+                                                </div>
+                                                <div class="post-card__name col-12 text-justify">
+                                                    <h2>
+                                                        <a href="{% url 'blogs:blog' slug=blog.blog_slug %} ">
+                                                            {{blog.blog_title}}
+                                                        </a>
+                                                    </h2>
+                                                </div>
+                                                <div class="post-card__content text-justify">
+                                                    {{blog.blog_short_text}}
+                                                </div>
+                                                <div class="post-card__read-more  bg-primary rounded-pill">
+                                                    <a href=" {% url 'blogs:blog' slug=blog.blog_slug %} " class=" text-light btn-sm">بیشتر بخوانید</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                 {% endfor %}
+                            </div>
+
+
+                        </div>
+
+                        <div class="posts-view__pagination">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                        
+                                <!--Previous-->
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item "><a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                                        {% endif %}
+                                <!-- Previous-->
+                        
+                                <!--Hellip-->
+                                {% if page_obj.number|add:'-4' > 1 %}
+                                    <li class="page-item"><a class="page-link " href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+                                {% endif %}
+                        
+                            <!--Pager-->
+                            {% for i in page_obj.paginator.page_range %}
+                                {% if page_obj.number == i %}
+                                    <li class="page-item active text-dark" aria-current="page">
+                                        <span class="page-link bg-primary text-light">
+                                            {{ i }}
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                    </li>
+                                {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <!--end Pager__>
+                        
+                            <!Hellip-->
+                            {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                                <li class="page-item"><a class="page-link " href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
+                            {% endif %}
+                            <!end Hellip -->
+                        
+                            <!--Next-->
+                            {% if page_obj.has_next %}
+                                <li class="page-item ">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item-disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="True">بعدی</a></li>
+                            {% endif %}
+                            <!--end Next-->
+                            </ul>
+                            </nav>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-lg-4">
+                <div class="block block-sidebar block-sidebar--position--end">
+                    {% comment %} <div class="block-sidebar__item">
+                        <div class="widget-search">
+                            <form class="widget-search__body">
+                                <input class="widget-search__input" placeholder="جستجوی بلاگ ..." type="text"
+                                    autocomplete="off" spellcheck="false">
+                                <button class="widget-search__button" type="submit">
+                                    <svg width="20px" height="20px">
+                                        <use xlink:href="images/sprite.svg#search-20"></use>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="block-sidebar__item">
+                        <div class="widget-aboutus widget">
+                            <h4 class="widget__title">درباره بلاگ</h4>
+                            <div class="widget-aboutus__text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
+                                در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی</div>
+                            <div class="widget-aboutus__socials">
+                                <ul>
+                                    <li><a class="widget-aboutus__link widget-aboutus__link--rss" href="#"
+                                            target="_blank"><i class="widget-social__icon fas fa-rss"></i></a>
+                                    </li>
+                                    <li><a class="widget-aboutus__link widget-aboutus__link--youtube" href="#"
+                                            target="_blank"><i
+                                                class="widget-aboutus__icon fab fa-youtube"></i></a></li>
+                                    <li><a class="widget-aboutus__link widget-aboutus__link--facebook" href="#"
+                                            target="_blank"><i
+                                                class="widget-aboutus__icon fab fa-facebook-f"></i></a></li>
+                                    <li><a class="widget-aboutus__link widget-aboutus__link--twitter" href="#"
+                                            target="_blank"><i
+                                                class="widget-aboutus__icon fab fa-twitter"></i></a></li>
+                                    <li><a class="widget-aboutus__link widget-aboutus__link--instagram" href="#"
+                                            target="_blank"><i
+                                                class="widget-aboutus__icon fab fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-sidebar__item">
+                        <div class="widget-posts widget">
+                            <h4 class="widget__title">آخرین مطالب</h4>
+                            <div class="widget-posts__list">
+                                {% for blog in blog_recents %}
+                                    <div class="widget-posts__item">
+                                        <div class="widget-posts__image">
+                                            <a href="{% url 'blogs:blog' slug=blog.blog_slug %}"><img src="{{media_url}}{{blog.blog_main_image}}" alt=""></a>
+                                        </div>
+                                        <div class="widget-posts__info">
+                                            <div class="widget-posts__name">
+                                                <a href="{% url 'blogs:blog' slug=blog.blog_slug %}">
+                                                    {{blog.blog_title}}
+                                                </a>
+                                            </div>
+                                            <div class="widget-posts__date">
+                                                {{blog.blog_publish_date | date:'Y/m/d >> H:i:s'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-sidebar__item">
+                        <div class="widget-tags widget">
+                            <h4 class="widget__title">برچسب ها</h4>
+                            <div class="tags tags--lg">
+                                <div class="tags__list">
+                                    {% for tag in blog_tags %}
+                                        <a href="#">{{tag.tag_name}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

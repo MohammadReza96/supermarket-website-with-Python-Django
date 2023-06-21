@@ -1,0 +1,546 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load base_tags %}
+
+{% block title %}home{% endblock title %}
+{% block body %}
+<div class="site__body">
+    <!-- .block-slideshow -->
+    <div class="block-slideshow block-slideshow--layout--full block">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="block-slideshow__body">
+                        <div class="owl-carousel">
+                            {% comment %} {% current_time %} {% endcomment %}
+
+                            {% for slide in slider_image %}
+                                <a class="block-slideshow__slide" href="">
+                                    <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"
+                                        style="background-image: url('{{media_url}}{{slide.slider_image}}"></div>
+                                    <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile"
+                                        style="background-image: url('{{media_url}}{{slide.slider_image}}"></div>
+                                    <div class="block-slideshow__slide-content">
+                                        <div class="block-slideshow__slide-title text-primary">
+                                            {{slide.slider_title}}
+                                        </div>
+                                        <div class="block-slideshow__slide-text text-dark col-4">
+                                            {{slide.slider_short_text}}
+                                            <br>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .block-slideshow / end -->
+    <!-- .block-features -->
+    <div class="block block-features block-features--layout--boxed">
+        <div class="container">
+            <div class="block-features__list">
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title">ارسال رایگان</div>
+                        <div class="block-features__subtitle">لورم ایپسوم متن ساختگی</div>
+                    </div>
+                </div>
+                <div class="block-features__divider"></div>
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title">پشتیبانی 24 ساعته</div>
+                        <div class="block-features__subtitle">هر زمان تماس بگیرید</div>
+                    </div>
+                </div>
+                <div class="block-features__divider"></div>
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title">100% امن</div>
+                        <div class="block-features__subtitle">پرداخت های امن</div>
+                    </div>
+                </div>
+                <div class="block-features__divider"></div>
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title">پیشنهادات جدید</div>
+                        <div class="block-features__subtitle">تخفیف تا 90%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <br>
+        {% include 'product_app/partials/brand_list.html' %}
+    </div>
+    <!-- .block-features / end -->
+    <!-- .block-products-carousel -->
+
+    {% comment %} {% load humanize %} {% endcomment %}
+    <div class="block block-products-carousel" data-layout="grid-5">
+        <div class="container">
+            {% include 'product_app/partials/product_group.html' with title='ارزانترین محصولات' fun_val='cheap' %}
+            <div id="cheap_pro">
+                {% render_partial 'products:cheapest_product'%}
+            </div>
+            {% comment %} {% include 'product_app/partials/product_box.html' with type=1 %} {% endcomment %}
+            <br>
+            <br>
+            <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- .block-products-carousel / end -->
+    <!-- .block-banner -->
+    <div class="block block-banner">
+        <div class="container">
+            <a href="" class="block-banner__body">
+                <div class="block-banner__image block-banner__image--desktop"
+                    style="background-image: url('https://picsum.photos/1110/170')"></div>
+                <div class="block-banner__image block-banner__image--mobile"
+                    style="background-image: url('https://picsum.photos/510/390')"></div>
+                <div class="block-banner__title">
+                    کالای تبلیغاتی
+                    <br class="block-banner__mobile-br">
+                </div>
+                <div class="block-banner__text">بهترین کالا برای خرید شما</div>
+                <div class="block-banner__button"><span class="btn btn-sm btn-primary">هم اکنون بخرید</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- .block-banner / end -->
+    <!-- .block-products -->
+    <div class="block block-products block-products--layout--large-last">
+        {% comment %} <div class="container">
+            <div class="block-header">
+                <h3 class="block-header__title">پرفروش ترین ها</h3>
+                <div class="block-header__divider"></div>
+            </div>
+            <div class="block-products__body">
+                <div class="block-products__list">
+                    <div class="block-products__list-item">
+                        <div class="product-card">
+                            <div class="product-card__badges-list">
+                                <div class="product-card__badge product-card__badge--sale">جدید</div>
+                            </div>
+                            <div class="product-card__image">
+                                <a href="product.html">
+                                    <img src="{{media_url}}/images/products/p2.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card__info">
+                                <div class="product-card__name">
+                                    <a href="product.html">
+                                        کالای شماره 2
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-card__actions">
+                                <div class="product-card__availability">موجودی: <span class="text-success">موجود
+                                        در انبار</span></div>
+                                <div class="product-card__prices"><span class="product-card__new-price">184,000
+                                        تومان</span> <span class="product-card__old-price">200,000
+                                        تومان</span></div>
+                                <div class="product-card__buttons">
+                                    <button class="btn btn-primary product-card__addtocart" type="button">
+                                        افزودن به سبد
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-products__list-item">
+                        <div class="product-card">
+                            <div class="product-card__badges-list">
+                                <div class="product-card__badge product-card__badge--sale">جدید</div>
+                            </div>
+                            <div class="product-card__image">
+                                <a href="product.html">
+                                    <img src="{{media_url}}/images/products/p1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card__info">
+                                <div class="product-card__name">
+                                    <a href="product.html">
+                                        کالای شماره 2
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="product-card__actions">
+                                <div class="product-card__availability">موجودی: <span class="text-success">موجود
+                                        در انبار</span></div>
+                                <div class="product-card__prices"><span class="product-card__new-price">184,000
+                                        تومان</span> <span class="product-card__old-price">200,000
+                                        تومان</span></div>
+                                <div class="product-card__buttons">
+                                    <button class="btn btn-primary product-card__addtocart" type="button">
+                                        افزودن به سبد
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-products__list-item">
+                        <div class="product-card">
+                            <div class="product-card__badges-list">
+                                <div class="product-card__badge product-card__badge--sale">جدید</div>
+                            </div>
+                            <div class="product-card__image">
+                                <a href="product.html">
+                                    <img src="{{media_url}}/images/products/p1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card__info">
+                                <div class="product-card__name">
+                                    <a href="product.html">
+                                        کالای شماره 2
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="product-card__actions">
+                                <div class="product-card__availability">موجودی: <span class="text-success">موجود
+                                        در انبار</span></div>
+                                <div class="product-card__prices"><span class="product-card__new-price">184,000
+                                        تومان</span> <span class="product-card__old-price">200,000
+                                        تومان</span></div>
+                                <div class="product-card__buttons">
+                                    <button class="btn btn-primary product-card__addtocart" type="button">
+                                        افزودن به سبد
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-products__list-item">
+                        <div class="product-card">
+                            <div class="product-card__badges-list">
+                                <div class="product-card__badge product-card__badge--sale">جدید</div>
+                            </div>
+                            <div class="product-card__image">
+                                <a href="product.html">
+                                    <img src="{{media_url}}/images/products/p1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card__info">
+                                <div class="product-card__name">
+                                    <a href="product.html">
+                                        کالای شماره 2
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="product-card__actions">
+                                <div class="product-card__availability">موجودی: <span class="text-success">موجود
+                                        در انبار</span></div>
+                                <div class="product-card__prices"><span class="product-card__new-price">184,000
+                                        تومان</span> <span class="product-card__old-price">200,000
+                                        تومان</span></div>
+                                <div class="product-card__buttons">
+                                    <button class="btn btn-primary product-card__addtocart" type="button">
+                                        افزودن به سبد
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-products__list-item">
+                        <div class="product-card">
+                            <div class="product-card__badges-list">
+                                <div class="product-card__badge product-card__badge--sale">جدید</div>
+                            </div>
+                            <div class="product-card__image">
+                                <a href="product.html">
+                                    <img src="{{media_url}}/images/products/p1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card__info">
+                                <div class="product-card__name">
+                                    <a href="product.html">
+                                        کالای شماره 2
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="product-card__actions">
+                                <div class="product-card__availability">موجودی: <span class="text-success">موجود
+                                        در انبار</span></div>
+                                <div class="product-card__prices"><span class="product-card__new-price">184,000
+                                        تومان</span> <span class="product-card__old-price">200,000
+                                        تومان</span></div>
+                                <div class="product-card__buttons">
+                                    <button class="btn btn-primary product-card__addtocart" type="button">
+                                        افزودن به سبد
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-products__list-item">
+                        <div class="product-card">
+                            <div class="product-card__badges-list">
+                                <div class="product-card__badge product-card__badge--sale">جدید</div>
+                            </div>
+                            <div class="product-card__image">
+                                <a href="product.html">
+                                    <img src="{{media_url}}/images/products/p1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card__info">
+                                <div class="product-card__name">
+                                    <a href="product.html">
+                                        کالای شماره 2
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="product-card__actions">
+                                <div class="product-card__availability">موجودی: <span class="text-success">موجود
+                                        در انبار</span></div>
+                                <div class="product-card__prices"><span class="product-card__new-price">184,000
+                                        تومان</span> <span class="product-card__old-price">200,000
+                                        تومان</span></div>
+                                <div class="product-card__buttons">
+                                    <button class="btn btn-primary product-card__addtocart" type="button">
+                                        افزودن به سبد
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-products__featured">
+                    <div class="block-products__featured-item">
+                        <div class="product-card">
+
+                            <div class="product-card__badges-list">
+                                <div class="product-card__badge product-card__badge--new">جدید</div>
+                            </div>
+                            <div class="product-card__image">
+                                <a href="product.html">
+                                    <img src="{{media_url}}/images/products/p1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card__info">
+                                <div class="product-card__name">
+                                    <a href="product.html">
+                                        کالای شماره 2
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="product-card__actions">
+                                <div class="product-card__availability">موجودی: <span class="text-success">موجود
+                                        در انبار</span></div>
+                                <div class="product-card__prices">200,000 تومان</div>
+                                <div class="product-card__buttons">
+                                    <button class="btn btn-primary product-card__addtocart" type="button">
+                                        افزودن به سبد
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                    <button
+                                        class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                                        type="button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="block block-products-carousel" data-layout="grid-5">
+            <div class="container">
+                {% include 'product_app/partials/product_group.html' with title='پر فروش ترین محصولات در تمامی دسته ها' fun_val='topsell'%}
+                <div id="top_pro">
+                    {% render_partial 'products:topsell_product'%}
+                </div>                
+                <br>
+                <br>
+                <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <!-- .block-products / end -->
+    <!-- .block-categories -->
+
+
+    {% render_partial 'products:favorite_Product'%}
+
+
+    <div class="block block-products-carousel" data-layout="grid-5">
+        <div class="container">
+            {% include 'product_app/partials/product_group.html' with title='جدیدترین محصولات' fun_val='new'%}
+            <div id="new_pro">
+                {% render_partial 'products:newest_product'%}
+            </div>
+            <br>
+            <br>
+            <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- .block-products-carousel / end -->
+    <!-- .block-posts -->
+    <div class="block block-posts block-posts--layout--grid-nl" data-layout="grid-nl">
+        <div class="container">
+            <div class="block-header">
+                <h3 class="block-header__title">آخرین مقالات</h3>
+                <div class="block-header__divider"></div>
+                <div class="block-header__arrows-list">
+
+                    <button class="block-header__arrow block-header__arrow--left" type="button">
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                    <button class="block-header__arrow block-header__arrow--right" type="button">
+                        <i class="fas fa-angle-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="block-posts__slider">
+                <div class="owl-carousel">
+
+
+
+                    {% for blog in blogs %}
+                        <div class="post-card">
+                            <div class="post-card__image">
+                                <a href="">
+                                    <img src="{{media_url}}{{blog.blog_main_image}}" alt="">
+                                </a>
+                            </div>
+                            <div class="post-card__info">
+                                <div class="post-card__category"><a href="">پیشنهادهای ویژه</a></div>
+                                <div class="post-card__name">
+                                    <a href="{% url 'blogs:blog' slug=blog.blog_slug %}">{{blog.blog_title}}</a></div>
+                                <div class="post-card__date">{{blog.blog_publish_date | date:'Y/m/d >> H:i:s'}}</div>
+                                <div class="post-card__content text-justify">{{ blog.blog_short_text}}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .block-posts / end -->
+    <!-- .block-brands -->
+
+</div>
+{% endblock body %}

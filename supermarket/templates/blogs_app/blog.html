@@ -1,0 +1,123 @@
+{% extends 'main_template.html' %}
+{% load render_partial %}
+{% load humanize %}
+{% block body %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">مقاله : {{blog.blog_title}}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9 col-xl-8">
+                <div class="block post post--layout--full">
+                    <div class="post__header post-header post-header--layout--full">
+                        
+                        <h1 class="post-header__title">{{blog.blog_title}}</h1>
+                        <div class="post-header__meta">
+                            <div class="post-header__meta-item col-12">توسط : 
+                                {% for author in blog.blog_author.all %}
+                                <a href="">
+                                    {{author}}
+                                </a> - 
+                                {% endfor %}
+                            </div>
+                            <div class="post-header__meta-item col-12"><a href="">{{blog.blog_publish_date_jalai_type }}</a></div>
+                            <div class="post-header__meta-item col-12"> تعداد بازدید : <span href="" style="color:red;">{{blog.blog_view_number}}</span></div>
+                        </div>
+                    </div>
+                    <div class="post__featured">
+                        <a href=""><img src="images/posts/post.jpg" alt=""></a>
+                    </div>
+                    <div class="post__content typography typography--expanded">
+                        {% autoescape off %}
+                            {{blog.blog_main_text}}
+                        {% endautoescape %}
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم</p>
+                    </div>
+                    <div class="post__footer">
+                        <div class="post__tags-share-links">
+                            <div class="post__tags tags">
+                                <div class="tags__list">
+                                    {% for tag in blog.blog_tag.all %}
+                                        <a href="">{{tag.tag_name}}</a> 
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                            <div class="post__share-links share-links">
+                                <ul class="share-links__list">
+                                    <li class="share-links__item share-links__item--type--like">
+                                        <a href="">اشتراک گذاری</a>
+                                    </li>
+                                    <li class="share-links__item share-links__item--type--like">
+                                        <a href="">اشتراک گذاری</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="post-author">
+                            <div class="post-author__avatar">
+                                <a href=""><img src="images/avatars/avatar-1.jpg" alt=""></a>
+                            </div>
+                            <div class="post-author__info">
+                                <div class="post-author__name">نویسنده : <a href="">مریم رضایی</a></div>
+                                <div class="post-author__about">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی</div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="" id="blog_form">
+                            <div class="blog_form col-12">
+                                <h2>نظر خود را بنویسید</h2>
+                                {% if user.is_authenticated %}
+                                    {% render_partial 'blogs:blog_comment' slug=blog.blog_slug %}
+                                {% else %}
+                                    <div class='d-flex flex-wrap justify-content-center'>برای درج نظر وارد <a href=" {% url 'accounts:login' %}?next=/blogs/blog/{{blog.blog_slug}}">حساب کاربری</a> خود شوید</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                            <br>
+                            <br>
+                            <br>
+                        <div class="blog_idea">
+                            <h2>نظرات دیگران</h2>
+                            {% for blog_comment in blog_comments %}
+                                {% if blog_comment.blog.blog_slug == blog.blog_slug %}
+                                    <li class="reviews-list__item d-flex flex-wrap justify-content-between shadow-shadow bg-primary text-light rounded my-2">
+                                        <div class="review col-10">
+                                            <div class="review__avatar">
+                                                <img src="{{media_url}}{{blog_comment.user.image}}" alt="">
+                                            </div>
+                                            <div class="review__content d-flex flex-wrap ">
+                                                <div class="review__author col-12">{{blog_comment.user.name}}</div>
+                                                <div class="review__text col-12">{{blog_comment.user_comment}}</div>
+                                                <div class="review__date col-auto border rounded-pill border-light text-light">{{blog_comment.register_date | date:'Y/m/d  H:i:s'}}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

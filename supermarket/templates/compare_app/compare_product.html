@@ -1,0 +1,95 @@
+{% load humanize %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">مقایسه</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>مقایسه محصول</h1></div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="container col-md-5 col-sm-9">
+            {% if products %}
+            <br>
+                <div class="d-flex flex-wrap justify-content-center">
+                    <table class="col-10 table table-bordered">
+                        <tr>
+                            <th class="text-center" style="background-color:#EFEFEF;">ویژگی</th>
+                            {% for product in products %}
+                                <td class="text-center cart-table__column cart-table__column--image" style="background-color:#EFEFEF;">
+                                    <i class="fa fa-times product-remove" style="color:red" onclick="deleteFromCompareList({{product.id}})"></i>
+                                    <a href=""><img src="{{media_url}}{{product.product_image}}" alt=""></a>
+                                    <a href=" {% url 'products:product_detail' product.product_slug %} " class="text-dark">
+                                        {{product.product_name}}
+                                    </a>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        {% for feature in features %}
+                            <tr>
+                                <td class="text-center" style="background-color:#EFEFEF;">{{feature}}</td>
+                                {% for product in products %}
+                                    <td class="text-center" >
+                                        {% for item in product.product_features.all %}
+                                            {% if item.product_feature_feature == feature %}
+                                                <span>{{item.filter_value.value_title}}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td class="text-center" style="background-color:#EFEFEF;">قیمت محصول</td>
+                            {% for product in products %}
+                                    <td class="text-center" >
+                                        {% if product.get_warehouse_status == 0 %}
+                                            -
+                                        {% else %}
+                                            {{product.get_finall_price_with_discount|intcomma}}
+                                        {% endif %}
+                                    </td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td class="text-center" style="background-color:#EFEFEF;"></td>
+                            {% for product in products %}
+                                {% if product.get_warehouse_status == 0 %}
+                                    <td class="text-center text-danger">
+                                        ناموجود
+                                    </td>
+                                {% else %}
+                                    <td class="text-center" >
+                                        <button class="btn bg-primary text-light product-card__addtocart rounded-pill"
+                                        type="button" onclick="add_to_shopcard({{product.id}},1)">
+                                        افزودن به سبد
+                                        </button>
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+            {% else %}
+                <div class='container'>
+                    <br>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th class="text-center">محصولات انتخاب شده</th>
+                            <td class="text-center text-danger">کالای برای مقایسه انتخاب نشده است</td>
+                        </tr>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

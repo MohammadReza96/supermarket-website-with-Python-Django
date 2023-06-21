@@ -1,0 +1,14 @@
+<form action=" {% url 'comments:create_comment' slug=slug %} "  method='post'>
+    {% if commentId == None %}
+        <h2>دیدگاه خود را بنویسید</h2>
+    {% endif %}
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="review-text">دیدگاه شما</label>
+        {{form.as_p}}
+    </div>
+    <div class="form-group mb-0">
+        <button type="submit" class="btn bg-primary text-light btn-lg">ارسال نظر</button>
+    </div>
+    
+</form>

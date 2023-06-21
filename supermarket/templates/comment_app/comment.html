@@ -1,0 +1,66 @@
+{% load render_partial %}
+<div class="reviews-view">
+    <div class="reviews-view__list">
+        <h3 class="reviews-view__header">دیدگاه های مشتریان</h3>
+        <div class="reviews-list">
+            <ol class="reviews-list__content">
+                {% for comment in  product.get_product_comments %}
+                    {% if comment.comment_parent == None %}
+                        <li class="reviews-list__item d-flex flex-wrap justify-content-around" >
+                            <div class="review col-10">
+                                <div class="review__avatar">
+                                    <img src="{{media_url}}{{comment.user.image}}" alt="">
+                                </div>
+                                <div class="review__content">
+                                    <div class="review__author">{{comment.user.name}}</div>
+                                    <div class="review__text">{{comment.user_comment}}</div>
+                                    <div class="review__date">{{comment.register_date | date:'Y/m/d  H:i:s'}}</div>
+                                </div>
+                            </div>
+                            <div class='col-10'>
+                                {% if user.is_authenticated %}
+                                        <div class='col-2'>
+                                            <a 
+                                               class="btn bg-primary text-light"
+                                               id="btn_{{comment.id}}"
+                                               onclick="showCreateCommentForm({{comment.id}},'{{product.product_slug}}');">پاسخ</a>
+                                            
+                                        </div>
+                                        {% comment %}  for pouring a form after clicking on this a link {% endcomment %}
+                                        <div id="comment_form_{{comment.id}}"> 
+                                        </div>
+                                        {% comment %} for closing form {% endcomment %}
+                                        <button class="btn mt-2" id="btn_unshow_{{comment.id}}"  onclick="UnshowCreateCommentForm({{comment.id}});" ></button>
+                                {% else %}
+                                    <div>برای وارد کردن نظر خود در مورد این کامنت ، وارد <a href=" {% url 'accounts:login' %}?next=/products/product_detail/{{product.product_slug}}/">حساب کاربری</a> خود شوید</div>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% for ch_comment in  comment.child_comments.all %}
+                                {% if ch_comment.is_active %}
+                                    <li class="reviews-list__item d-flex flex-wrap justify-content-between shadow-shadow bg-primary text-light rounded my-2">
+                                        <div class="review col-10">
+                                            <div class="review__avatar">
+                                                <img src="{{media_url}}{{ch_comment.user.image}}" alt="">
+                                            </div>
+                                            <div class="review__content d-flex flex-wrap ">
+                                                <div class="review__author col-12">{{ch_comment.user.name}}</div>
+                                                <div class="review__text col-12">{{ch_comment.user_comment}}</div>
+                                                <div class="review__date col-auto border rounded-pill border-light text-light">{{ch_comment.register_date | date:'Y/m/d >> H:i:s'}}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+        {% render_partial 'comments:create_comment' slug=product.product_slug %}
+    {% else %}
+        <div class='d-flex flex-wrap justify-content-center'>برای درج نظر وارد <a href=" {% url 'accounts:login' %}?next=/products/product_detail/{{product.product_slug}}/">حساب کاربری</a> خود شوید</div>
+    {% endif %}
+
+</div>

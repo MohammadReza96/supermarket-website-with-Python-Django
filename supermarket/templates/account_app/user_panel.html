@@ -1,0 +1,48 @@
+{% extends 'main_template.html' %}
+{% block title %}پنل کاربری{% endblock title %}
+{% block body %}
+   <div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../index.html">خانه</a>
+                            /
+                        </li>
+                        <li class="breadcrumb-item"><a href="">داشبورد</a>
+                        </li>
+                        
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>حساب کاربری</h1></div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 d-flex">
+                    <div class="account-nav flex-grow-1">
+                        <h4 class="account-nav__title">ناوبری</h4>
+                        <ul>
+                            {% comment %} account-nav__item--active {% endcomment %}
+                            <li class="account-nav__item "><a href=" {% url 'accounts:userpanel' %}">داشبورد</a></li>
+                            <li class="account-nav__item"><a  href=" {% url 'accounts:userdetail_modify_informations' %} ">ویرایش پروفایل</a></li>
+                            <li class="account-nav__item"><a  href=" {% url 'accounts:userpanel_orders' %} ">سابقه خرید</a></li>
+                            <li class="account-nav__item"><a  href=" {% url 'accounts:userdetail_modify_password' %} ">تغییر رمز عبور</a></li>
+                            <li class="account-nav__item"><a href=" {% url 'accounts:logout' %} ">خروج</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+
+                {% block dashbord %}{% endblock dashbord %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
