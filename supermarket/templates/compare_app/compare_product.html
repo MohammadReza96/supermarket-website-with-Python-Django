@@ -25,9 +25,11 @@
                         <tr>
                             <th class="text-center" style="background-color:#EFEFEF;">ویژگی</th>
                             {% for product in products %}
-                                <td class="text-center cart-table__column cart-table__column--image" style="background-color:#EFEFEF;">
+                                <td class="text-center cart-table__column" style="background-color:#EFEFEF;">
                                     <i class="fa fa-times product-remove" style="color:red" onclick="deleteFromCompareList({{product.id}})"></i>
-                                    <a href=""><img src="{{media_url}}{{product.product_image}}" alt=""></a>
+                                    <br>
+                                    <a href=""><img src="{{media_url}}{{product.product_image}}" alt="" width='200' ></a>
+                                    <br>
                                     <a href=" {% url 'products:product_detail' product.product_slug %} " class="text-dark">
                                         {{product.product_name}}
                                     </a>
