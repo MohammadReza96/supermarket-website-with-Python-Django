@@ -2,7 +2,7 @@
 <p dir="auto"><a name="user-content-readme-top"></a></p>
 
 
-<a href="https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt"><img src="https://camo.githubusercontent.com/111148992d0253f8d5e36b62087d48a9eabb1d7244b2b7316214f47d5c9a8781/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f6f74686e65696c647265772f426573742d524541444d452d54656d706c6174652e7376673f7374796c653d666f722d7468652d6261646765" alt="MIT License" data-canonical-src="https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge" style="max-width: 100%;"></a>
+<a href="https://github.com/MohammadReza96/Dj-supermarket/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/111148992d0253f8d5e36b62087d48a9eabb1d7244b2b7316214f47d5c9a8781/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f6f74686e65696c647265772f426573742d524541444d452d54656d706c6174652e7376673f7374796c653d666f722d7468652d6261646765" alt="MIT License" data-canonical-src="https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge" style="max-width: 100%;"></a>
 
 
 
