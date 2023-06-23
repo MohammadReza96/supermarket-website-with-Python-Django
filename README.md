@@ -57,8 +57,22 @@
   </ol>
 </details>
 
+
+
+https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/556f4aa3-21e8-47d0-bc76-91e7c7f1ca90
+
+
+
+<img width="577" alt="Screenshot 1402-04-01 at 01 39 30" src="https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/560e7eb7-2418-49a9-9fd4-af0c5019c1e7">
+
 <h2 tabindex="-1" dir="auto"><a id="user-content-about-the-project" class="anchor" aria-hidden="true" href="#about-the-project"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>About The Project</h2>
-<p dir="auto"><a href="https://example.com" rel="nofollow"><img src="/othneildrew/Best-README-Template/raw/master/images/screenshot.png" alt="Product Name Screen Shot" style="max-width: 100%;"></a></p>
+<p dir="auto"><a href="https://example.com" rel="nofollow">
+
+  
+  <img src="https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/560e7eb7-2418-49a9-9fd4-af0c5019c1e7" alt="Product Name Screen Shot" style="max-width: 100%;">
+  
+  
+</a></p>
 <p dir="auto">There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.</p>
 <p dir="auto">Here's why:</p>
 <ul dir="auto">
