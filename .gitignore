@@ -5,7 +5,7 @@ __pycache__/
 readme.html
 # C extensions
 *.so
-
+readme_copy.html
 # Distribution / packaging
 .Python
 build/
