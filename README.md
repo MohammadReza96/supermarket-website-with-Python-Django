@@ -50,7 +50,17 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+        <a href="#usage">Usage</a>
+        <ul dir="auto">
+            <li><a href="#home-page">home page</a></li>
+            <li><a href="#compare-page">compare page</a></li>
+            <li><a href="#order-page">order page</a></li>
+            <li><a href="#favorite-page">favorite page</a></li>
+            <li><a href="#userpanel-page">userpanel page</a></li>
+            <li><a href="#blog-page">blog page</a></li>
+        </ul>
+    </li>
     <!-- <li><a href="#roadmap">Roadmap</a></li> -->
     <!-- <li><a href="#contributing">Contributing</a></li> -->
     <li><a href="#license">License</a></li>
@@ -263,7 +273,7 @@
 <h3 dir="auto">The images below show some part of the project</h3>
 
 <ul dir="auto">
-    <li>
+    <li id="home-page">
         Home page
     </li>
 </ul>
@@ -271,35 +281,35 @@
   <img src="https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/560e7eb7-2418-49a9-9fd4-af0c5019c1e7" alt="Product Name Screen Shot" style="max-width: 100%;">
 <hr>
 <ul dir="auto">
-    <li>
+    <li id="favorite-page">
         Favorite page
     </li>
 </ul>
 <img src="https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/185bcee4-fa41-46b7-a509-d39f1e9ec4dc" alt="Product Name Screen Shot" style="max-width: 100%;">
 <hr>
 <ul dir="auto">
-    <li>
+    <li id="order-page">
         Order page
     </li>
 </ul>
 <img src="https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/fec74c1f-305a-4afe-a3d5-40cba9268528" alt="Product Name Screen Shot" style="max-width: 100%;">
 <hr>
 <ul dir="auto">
-    <li>
+    <li id="compare-page">
         Compare page
     </li>
 </ul>
 <img src="https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/9e55a0cb-260a-46cc-a2ea-4825de285d30" alt="Product Name Screen Shot" style="max-width: 100%;">
 <hr>
 <ul dir="auto">
-    <li>
+    <li id="blog-page">
         Blog page
     </li>
 </ul>
 <img src="https://github.com/MohammadReza96/Dj-supermarket/assets/108836322/b3ca8dee-5a18-4681-a211-a5c50ff3e27d" alt="Product Name Screen Shot" style="max-width: 100%;">
 <hr>
 <ul dir="auto">
-    <li>
+    <li id="userpanel-page">
         userpanel purchase history page
     </li>
 </ul>
