@@ -1,6 +1,8 @@
 from django import forms
 from apps.orders.models import PaymentType,DeilveryTime
 
+ch=[('xxx','xxx'),('zzz','zzz')]
+bh=[('xxx','xxx'),('zzz','zzz')]
 #--------------------------------------------------------------------- orderform for changing customer information
 class OrderForm(forms.Form):
     name=forms.CharField(max_length=100,label='نام',widget=forms.TextInput(attrs={'class':'form-control','placeholder':'نام'}),error_messages={'required':'نام خود را وارد کنید'})
@@ -13,7 +15,9 @@ class OrderForm(forms.Form):
     city=forms.CharField(max_length=100,label='شهر',widget=forms.TextInput(attrs={'class':'form-control','placeholder':'شهر'}),error_messages={'required':'این فیلد نمی تواند خالی باشد'},required=False)
     province=forms.CharField(max_length=100,label='استان',widget=forms.TextInput(attrs={'class':'form-control','placeholder':'استان'}),error_messages={'required':'این فیلد نمی تواند خالی باشد'},required=False)
     payment_type=forms.ChoiceField(label='روش پرداخت',choices=[ (item.id,item) for item in PaymentType.objects.all() ],widget=forms.RadioSelect(),error_messages={'required':'یک روش پرداخت را انتخاب کنید'})  #
+    # payment_type=forms.ChoiceField(label='روش پرداخت',choices=ch,widget=forms.RadioSelect(),error_messages={'required':'یک روش پرداخت را انتخاب کنید'})  #
 
 #--------------------------------------------------------------------- deliveryform for setting the delivery day
 class DeliveyDayForm(forms.Form):
     delivery_day=forms.ChoiceField(label='',choices=[ (item,item) for item in DeilveryTime.objects.all() ],widget=forms.Select(attrs={'class':'form-control'}),error_messages={'required':'یک روش پرداخت را انتخاب کنید'})  #
+    # delivery_day=forms.ChoiceField(label='',choices=bh,widget=forms.Select(attrs={'class':'form-control'}),error_messages={'required':'یک روش پرداخت را انتخاب کنید'})  #

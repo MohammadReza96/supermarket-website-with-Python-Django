@@ -10,7 +10,7 @@
 2- python manage.py runserver
 ###################################################################### Super User information
 userName = mohammadreza1375
-password = reza1996
+password = reza1375
 ###################################################################### normal User information
 userName = sara1381
 password = setin2002

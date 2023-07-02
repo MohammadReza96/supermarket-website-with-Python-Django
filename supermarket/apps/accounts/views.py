@@ -220,9 +220,16 @@ class LogoutUser(View):
     
     def get(self,request,*args,**kwargs):
         user_id=request.user.id
-        session_data=request.session[f'shop_card_{user_id}']
+        try:
+            session_data=request.session[f'shop_card_{user_id}']
+        except:
+            pass
         logout(request)
-        request.session[f'shop_card_{user_id}']=session_data
+        # request.session[f'shop_card_{user_id}']=session_data
+        try:
+            session_data=request.session[f'shop_card_{user_id}']
+        except:
+            pass
         return redirect('index:home')
 
 #-----------------------------------------------------------------------------------------------  userpanel
