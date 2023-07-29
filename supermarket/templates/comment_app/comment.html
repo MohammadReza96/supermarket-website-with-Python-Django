@@ -14,7 +14,8 @@
                                 <div class="review__content">
                                     <div class="review__author">{{comment.user.name}}</div>
                                     <div class="review__text">{{comment.user_comment}}</div>
-                                    <div class="review__date">{{comment.register_date | date:'Y/m/d  H:i:s'}}</div>
+                                    {% comment %} <div class="review__date">{{comment.register_date | date:'Y/m/d  H:i:s'}}</div> {% endcomment %}
+                                    <div class="review__date">{{comment.comment_publish_date_jalai_type}}</div>
                                 </div>
                             </div>
                             <div class='col-10'>
@@ -46,7 +47,7 @@
                                             <div class="review__content d-flex flex-wrap ">
                                                 <div class="review__author col-12">{{ch_comment.user.name}}</div>
                                                 <div class="review__text col-12">{{ch_comment.user_comment}}</div>
-                                                <div class="review__date col-auto border rounded-pill border-light text-light">{{ch_comment.register_date | date:'Y/m/d >> H:i:s'}}</div>
+                                                <div class="review__date col-auto border rounded-pill border-light text-light">{{ch_comment.comment_publish_date_jalai_type}}</div>
                                             </div>
                                         </div>
                                     </li>

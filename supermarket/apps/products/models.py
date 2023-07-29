@@ -209,7 +209,7 @@ class FeatureValue(models.Model):    # we can use this model in inline mode in f
         verbose_name_plural='مقدار ویژگی ها'
         
 # #----------------------------------------------------------------------------------------------------   ProductFeature
-class ProductFeature(models.Model):    # we can use this model in inline mode in product model
+class ProductFeature(models.Model):  # we can use this model in inline mode in product model
     # models attributes
     value=models.CharField(max_length=100,verbose_name='مقدار ویژگی محصول')
     #--- foriegnkeys or manytomanyfields
